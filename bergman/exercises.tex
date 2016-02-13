@@ -1,0 +1,128 @@
+%        File: exercises.tex
+%     Created: Sun Dec 27 11:00 PM 2015 P
+% Last Change: Sun Dec 27 11:00 PM 2015 P
+%
+\documentclass[11pt]{article} 
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsxtra}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{color,hyperref}
+\hypersetup{colorlinks,breaklinks,linkcolor=blue,urlcolor=blue,anchorcolor=blue,citecolor=blue}
+\usepackage[margin=1in]{geometry}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\phi}{\varphi}
+\newcommand{\limn}{\lim_{n\to \infty}}
+\newenvironment{bp}{\color{blue}\begin{proof}}{\end{proof}}
+\newenvironment{bs}{\color{blue}\begin{proof}[Solution]}{\end{proof}}
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\bar}[1]{\overline{#1}}
+\renewcommand{\Im}{\text{Im}}
+\renewcommand{\Re}{\text{Re}}
+\newcommand{\dudn}{\frac{\partial u}{\partial n}}
+\let\null\varnothing
+
+\newtheorem*{thm*}{Theorem}
+
+\begin{document}
+\subsection*{1.2:2}
+Suppose $S$ has the LUBP and GLBP and $X, Y \subset S$ and $X, Y = \null$
+
+If $x < y\ \forall x\in X\ \text{and}\ \forall y\in Y$, Then is $\sup X < \inf Y$?
+\begin{bp}
+  This is not true, look at $N = \{1/n \mid n\in \N\}$, then $M = \{- n\mid n \in N\}$, $m < n$ for each $m\in M$ and $n\in N$, but $\sup M = \inf N = 0$
+\end{bp}
+
+\subsection*{1.2:3}
+Let $S$ be an ordered set with LUBP, and let $A_i(i\in I)$ be a family of nonempty subsets of $S$. Suppose each $A_i$ is bounded above, let $\alpha_i = \sup A_i$, and suppose that the set $\{\alpha_i \mid i\in I\}$ is bounded above. Show that $\cup_{i\in I}A_i$ is bounded above and that $\sup \cup_{i\in I}A_i = \sup\{\alpha_i \mid i\in I\}$
+\begin{bp}
+Since $\{\alpha_i \mid i\in I\}$ is bounded above it has a supremum $\alpha$ since it is a subset of $S$. Let $a\in A = \cup_{i\in I}A_i$, then there is some $j$ st $a\in A_j$, then $a \leq \alpha_j\leq \alpha$. Since this is true for all $a\in A$, then the set $A$ is bounded above with upper bound $\alpha$. Since $A\subset S$, and it is bounded above it has a supremum, call it $\alpha'$, we will now show that $\alpha = \alpha'$, since $\alpha$ is an upper bound of $A$, then $\alpha' \leq \alpha$. If we can show that $\alpha\leq\alpha'$, then we are done. $\alpha'$ is an upper bound of $A$, so then it is an upper bound of $A_i$ for all $i\in I$. So then $\alpha_i \leq\alpha'$ for each $i$ so $\alpha'$ is an upper bound of the set of supremums. Since $\alpha$ is the supremum of that set, then $\alpha\leq\alpha'$. So then $\alpha=\alpha'$.
+\end{bp}
+
+\begin{itemize}
+  \item Suppose not all sets are bounded above. Show then that $A$ is unbounded
+    \begin{bp}
+      There is some $A_i$ that is not bounded above, then for each $x\in S$ there is some $x'\in A_i$ such that $x < x'$. Then since $A\subset S$, for each $a\in S$, there is some $x\in A_i\subset A$ such that $a < x$ so then $A$ is not bounded above.
+    \end{bp}
+  \item Suppose that each $A_i$ is bounded above but the set of their supremums is not bounded above.
+    \begin{bp} 
+    Call the set of supremums $I$. So since $I$ is not bounded above, for each $x\in S$, there is some $\alpha_j\in I$ such that $x < \alpha_j$. Then since since $\alpha_j$ is the supremum of $A_j$ and $x<\alpha_j$, then $x$ is not an upper bound of $A_j$ so there is some $a\in A_j\subset A$ such that $x < a$. Since we can do this for each $x\in S$, $A$ is not bounded above.
+    \end{bp}
+\end{itemize}
+
+When each $A_i$ is bounded above, show that $A = \cap_{i\in I}A_i$ is bounded above. 
+\begin{bp}
+  Let $a\in A \subset A_j$, since $A_j$ is bounded above, there is some $\beta\in S$ such that $a\leq \beta$. So then $A$ is bounded above. 
+\end{bp}
+Must $A$ be nonempty? 
+\begin{bp}
+  This statment is vacuously true, since in symbolic form, the statment would be 
+  \[
+    \left( \exists x\in S \right)\left( \forall a\in A \right)\left( x < a \right)\quad\iff\quad \exists x\forall a\left( x\in S\wedge\left( a\in A \implies x < a \right) \right)
+  \]
+  This then becomes 
+  \[
+    \exists x\forall a\left( x\in S\wedge\left( \mathbf{F} \implies x < a \right) \right)\quad\implies\quad \exists x\forall a \left( x\in S \land \mathbf{T} \right)
+  \]
+  Then we pick any $x\in S$ and this statment is true as long as $S$ is nonempty.
+\end{bp}
+Suppose $A \neq \null$. What is the relationship between $\sup A$ and the numbers $\alpha_i$?
+\begin{bp}
+I conjecture that $\sup A = \inf I$. To show this, we will do the following. Note that every element of $I$ is an upper bound of $A$ so $A$ has a sup. Let $x\in A$, since $x \leq \alpha_i\quad \forall \alpha_i\in I$ since $A\subset A_i$ for all $A_i$, then $I$ is bounded below and nonempty, so it has an inf. Call $\sup A = a$ and $\inf I = b$. Since $a$ is an upper bound of $A$, then $a\in I$ so $a \geq b$. Now we will show $a\leq b$. In order to show this, suppose $a > b$, then since $b$ is an inf, then $a$ is not a lower bound of $I$, so there is some $\alpha\in I$ such that $a > \alpha$. But $\alpha$ is an upper bound of $A$ and $a$ is its supremum, to this is a contradiction, so then $a = b$. 
+\end{bp}
+\subsection*{1.2:4}
+Let $S$ be a nonempty ordered set such that every nonempty subset $E\subset S$ has both a least upper bound and greatest lower bound. Suppose that $f: S\to S$ is a monatonically increasing function, $\left( \forall x, y\in S, x\leq y \implies f(x)\leq f(y) \right)$.
+
+Show there is an $x\in S$ such that $x = f(x)$
+\begin{bp}
+  Suppose not for contradiction, then $\forall x\in S$, either $x < f(x)$ or $x > f(x)$. Construct the sets $A \coloneqq \left\{ x\in S\mid x < f(x) \right\}$, and $B\coloneqq \left\{ x\in S\mid x > f(x) \right\}$. Since these are subsets of $S$, if they are nonempty then they have supremums and infimums. At least one would be nonempty otherwise $S = \null$. Suppose $B = \null$, then $x < f(x)$ for all $x\in S$. Then $A$ has an inf and sup, call them $a$ and $b$ respectively. Note that $b = \sup S$ since $S = A$. Since $b\in S = A$, then $b < f(b)$, but $f(b)\in S$ which which contradicts the fact that $b$ is an upper bound of $S$. Similar for $A=\null$. Now without loss of generality, look only at $A$ and consider $\alpha = \sup A$. We will consider $\alpha\in A$ and $\alpha\in B$. Suppose $\alpha\in A$, then $\alpha < f(\alpha)$. Since $f(\alpha), \alpha\in S$ and $\alpha\leq f(\alpha)$, then $f(\alpha) \leq f(f(\alpha))$. Now since $\alpha = \sup A$ and $\alpha < f(\alpha)$, then $f(\alpha)$, is not in $A$. Since $S\setminus A = B$, then $f(\alpha)\in B$, so then $f(\alpha) > f(f(\alpha))$ contradicting what we showed above. Now suppose $\alpha\in B$, then $\alpha > f(\alpha)$. Now let $x\in A$, then since $\alpha = \sup A$, then $x \leq \alpha$ since $\alpha$ is an upper bound of $A$. Therfore $f(x) \leq f(\alpha)$, and since $x\in A$, then $x < f(x)$. So $x<f(x)\leq f(\alpha)<\alpha$. So $x < f(\alpha)$ for all $x \in A$. This means that $f(\alpha)$ is an upper bound of $A$, but $f(\alpha) < \alpha$, contradicting that $\alpha$ is the supremum of $A$. Similar for $B$ with analyzing its infimum. Therfore we have a contradiction, so there must be some $x\in S$ such that $x = f(x)$
+
+\end{bp}
+\subsection*{1.2:5}
+\begin{itemize}
+  \item Let $S$ be an ordered set such that for any 2 elements $p < r$ in $S$, there is an element $q\in S$ with $p<q<r$. Suppose that $\alpha$ and $\beta$ are elements of $S$ such that for every $x\in S$ with $x > \alpha$ one has $x \geq \beta$. Show that $\beta\leq\alpha$.
+
+ \begin{bp}
+  Suppose not, then $\beta > \alpha$. Since they are in $S$, there is some $\gamma\in S$ such that \newline $\beta > \gamma > \alpha$. Note that $\gamma > \alpha$, but $\gamma < \beta$ contradicting the hypothesis. So then $\beta\leq \alpha$
+ \end{bp}
+  \item Show by example that this is not true if density of $S$ is not required.
+\begin{bp}
+  Let $S = \left\{ 1,2,3 \right\}$, then let $\alpha = 1$ and $\beta = 2$. then the hypothesis are satisfied since for each element larger than $\alpha$, it is larger than or equal to $\beta$.
+\end{bp}
+\end{itemize}
+\subsection*{1.2:6}
+\begin{itemize}
+  \item Find subset $E\subset S_1\subset S_2\subset S_3\subset \Q$ such that $E$ has a least upper bound in $S_1$ but not in $S_2$ but does in $S_3$. 
+\begin{bp}
+  Let $E = [0,1)\cap \Q$. Then let $S_1 = E\cup \left\{ 2 \right\}$. Note that $E$ has no supremum in itself, in fact it has no upper bounds in $E$. It does in $S_1$. It is 2. Now let \[S_2=S_1\cup\left((1,2]\cap\Q\right)\] Note that every element of $S_2\setminus S_1$ is an upper bound of $E$. But it has no smallest element, so $E$ has no least upper bound. Then let $S_3 = [0,2]$. the supremum of $E$ in this case is then 1
+\end{bp}
+\item Prove for any example with the properties dscribed in (a) (not just the example given), the least upper bound of $E$ in $S_1$ must be different than the one in $S_3$.
+\begin{bp}
+  Suppose they are the same, then call the supremum $\alpha$. Note that $\alpha$ is not a supremum in $S_2$, so then either $\alpha$ is no longer an upper bound of $E$ or there is some $\gamma\in S_2$ such that $\alpha > \gamma$ and $\gamma$ is an upper bound of $E$. Note that since $\alpha$ is an upper bound of $E$ as a subset of $S_1$, then $(\forall x\in E)\, \alpha\geq x$ and $\alpha\in S_1$. But $S_1\subset S_2$, so then $\alpha\in S_2$ and $(\forall x\in E)\, \alpha\geq x$. So then $\alpha$ is still an upper bound of $E$ in $S_2$. Now $E$ has a supremum in $S_3$, call is $\alpha_3$ and $\gamma\in S_3$. Since $\gamma$ is an upper bound of $E$, then $\gamma\geq\alpha_3 = \alpha$. So then $\alpha>\gamma\geq\alpha$ which is a contradiction.
+\end{bp}
+\item Can there exist an example with the properties of (a) such that $E = S_1$?
+\begin{bp}
+  Suppose that there is. Then $E$ has a supremum in $S_1$ call it $\alpha$. Then $\alpha\in E$. Now since $E$ does not have a supremum in $S_2$, there is some $\gamma\in S_2$ such that $\gamma < \alpha$ and $\gamma\geq x$ for all $x\in E$. So then $\gamma< \alpha$ and $\gamma\geq \alpha$ since $\alpha\in E$. Which is a contradiction.
+\end{bp}
+\end{itemize}
+\subsection*{1.2:7}
+Let $S$ be an ordered set and $E\subset S$ and $x\in S$. If one translates the statment ``$x$ is the supremum of $E$'' directly into symbols, one gets \[((\forall y\in E)\, x\geq y)\land ((\forall z\in S)((\forall y\in E)\, z\geq y)\implies z\geq x)\] This leads one to wonder if there are any simpler ways to express this property. Prove that in fact $x$ is the supremum of $E$ if and only iff \[(\forall y\in S)(y<x\iff ((\exists z\in E)(z > y)))\]
+\subsection*{1.2:8}
+Prove that $\inf \left\{ x + y + z\mid x,y,z\in \R,\, 0<x<y<z \right\} = 0$
+\begin{bp}
+  Call the above set $A$. We know that $\inf A $<++>
+\end{bp}<++>
+\end{document}
+
+
